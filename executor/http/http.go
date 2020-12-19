@@ -3,8 +3,8 @@ package httpe
 import (
 	"bytes"
 	"fmt"
-	"github.com/krpn/prometheus-alert-webhooker/executor"
-	"github.com/krpn/prometheus-alert-webhooker/utils"
+	"github.com/shichanson/alter-webhooker/executor"
+	"github.com/shichanson/alter-webhooker/utils"
 	"github.com/sirupsen/logrus"
 	"net/http"
 	"sort"

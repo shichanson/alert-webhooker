@@ -1,6 +1,6 @@
 package model
 
-import "github.com/krpn/prometheus-alert-webhooker/executor"
+import "github.com/shichanson/alter-webhooker/executor"
 
 // Tasks is a slice of executor.Task.
 type Tasks []executor.Task

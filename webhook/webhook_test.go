@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"github.com/golang/mock/gomock"
 	"github.com/jinzhu/copier"
-	"github.com/krpn/prometheus-alert-webhooker/executor"
-	"github.com/krpn/prometheus-alert-webhooker/model"
+	"github.com/shichanson/alter-webhooker/executor"
+	"github.com/shichanson/alter-webhooker/model"
 	"github.com/sirupsen/logrus"
 	"github.com/sirupsen/logrus/hooks/test"
 	"github.com/stretchr/testify/assert"
@@ -154,7 +154,7 @@ func TestWebhook(t *testing.T) {
 
 		testUnit.expectFunc(metric, executorMock, task)
 
-		req, err := http.NewRequest("POST", "http://prometheus-alert-webhooker.com/", bytes.NewBuffer(testUnit.body))
+		req, err := http.NewRequest("POST", "http://alert-webhooker.com/", bytes.NewBuffer(testUnit.body))
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -294,7 +294,7 @@ func TestWebhook_RulesChanged(t *testing.T) {
 
 		testUnit.expectFunc(metric, executorMock, task)
 
-		req, err := http.NewRequest("POST", "http://prometheus-alert-webhooker.com/", bytes.NewBuffer(body))
+		req, err := http.NewRequest("POST", "http://alert-webhooker.com/", bytes.NewBuffer(body))
 		if err != nil {
 			t.Fatal(err)
 		}

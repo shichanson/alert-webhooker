@@ -9,7 +9,14 @@ replace (
 	github.com/shichanson/alter-webhooker/runner => ./runner
 	github.com/shichanson/alter-webhooker/utils => ./utils
 	github.com/shichanson/alter-webhooker/webhook => ./webhook
+	github.com/shichanson/alter-webhooker/executor/http => ./executor/http
+	github.com/shichanson/alter-webhooker/executor/jenkins => ./executor/jenkins
+	github.com/shichanson/alter-webhooker/executor/telegram => ./executor/telegram
+	github.com/shichanson/alter-webhooker/executor/shell => ./executor/shell
+	github.com/shichanson/alter-webhooker/model => ./model
+
 )
+
 require (
 	github.com/alecthomas/kingpin v2.2.6+incompatible
 	github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc

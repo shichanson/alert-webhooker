@@ -2,7 +2,7 @@ package model
 
 import (
 	"github.com/golang/mock/gomock"
-	"github.com/krpn/prometheus-alert-webhooker/executor"
+	"github.com/shichanson/alter-webhooker/executor"
 	"github.com/stretchr/testify/assert"
 	"regexp"
 	"testing"
