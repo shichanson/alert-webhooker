@@ -1,0 +1,57 @@
+# cache size for blocked tasks
+# 50 * 1024 * 1024 = 50 MB
+block_cache_size: 52428800
+
+# pool size for new tasks
+# locks webhook if overflow
+pool_size: 100
+
+# runners count for parallel actions execute
+runners: 10
+
+# remote config refresh interval
+# rules refreshed only
+remote_config_refresh_interval: 60s
+
+
+# common parameters for actions
+common_parameters:
+  jenkins_credentials:
+    endpoint: https://jenkins.example.com/
+    login: webhooker
+    password: qwerty123
+    state_refresh_delay: 5s
+  telegram_bot:
+    bot_token: 123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11
+    chat_id: -1001103941234
+    message: Fixed ${LABEL_ALERTNAME}
+
+# list of rules to check and act
+rules:
+
+- name: JenkinsAutofix
+  conditions:
+    alert_annotations:
+      webhooker_jenkins_autofix: enabled # auto fix enabled
+      jenkins_job: (.*?)                 # jenkins job is set
+  actions:
+  - executor: jenkins
+    common_parameters: jenkins_credentials
+    parameters:
+      job: ${ANNOTATION_JENKINS_JOB} # job name from annotation jenkins_job
+    block: 10m
+  - executor: telegram
+    common_parameters: telegram_bot
+
+- name: LowDiskSpaceLogsFix
+  conditions:
+    alert_labels:
+      alertname: LowDiskSpace
+      instance: ^logs_(.*?)
+  actions:
+  - executor: shell
+    parameters:
+      command: ./clean.sh ${CUT_AFTER_LAST_COLON_LABEL_INSTANCE}
+    block: 30m
+  - executor: telegram
+    common_parameters: telegram_bot
